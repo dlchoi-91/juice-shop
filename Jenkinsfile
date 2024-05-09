@@ -1,8 +1,3 @@
-// Powered by Infostretch 
-
-//timestamps {
-
-//node () {
 pipeline {
     agent {label 'worker'}
     tools {nodejs "nodejs18"}
@@ -41,7 +36,6 @@ pipeline {
     	}
     
         stage('Docker Push') {
-          agent any
           steps {
             withCredentials([usernamePassword(credentialsId: 'dc-dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
               sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
